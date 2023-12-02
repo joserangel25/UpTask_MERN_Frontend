@@ -9,21 +9,21 @@ import { useAuth } from '../hooks/useAuth'
 
 export default function Login() {
 
-  const [ stateLogin, setStateLogin ] = useState({
+  const [stateLogin, setStateLogin] = useState({
     email: '',
     password: ''
   });
 
-  const [ alerta, setAlerta ] = useState({});
+  const [alerta, setAlerta] = useState({});
 
   const { setAuth } = useAuth()
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = sessionStorage.getItem('token')
-    if(token) navigate('proyectos')
+    if (token) navigate('proyectos')
   }, [])
-  
+
 
   const changeStateInput = (e) => {
     setStateLogin({
@@ -33,7 +33,7 @@ export default function Login() {
   }
   const handleSubmitLogin = async (e) => {
     e.preventDefault()
-    if(Object.values(stateLogin).includes('')){
+    if (Object.values(stateLogin).includes('')) {
       setAlerta({ msg: 'Todos los campos son obligatorios', error: true })
       return
     }
@@ -63,10 +63,10 @@ export default function Login() {
         className='bg-white shadow-md rounded-lg p-8 mt-5'
         onSubmit={handleSubmitLogin}
       >
-        
+
         {
           inputsLogin.map((inp, ind) => (
-            <InputForm 
+            <InputForm
               key={ind}
               type={inp.type}
               placeholder={inp.placeholder}
@@ -78,7 +78,7 @@ export default function Login() {
           ))
         }
 
-        <input 
+        <input
           type='submit'
           value='Iniciar sesión'
           className='w-full bg-sky-700 py-3 text-white uppercase font-bold rounded hover:cursor-pointer hover:bg-sky-800 transition-colors'
@@ -91,16 +91,22 @@ export default function Login() {
           to='registrar'
           className='block text-center my-5 text-slate-600 uppercase text-sm hover:text-slate-800 transition-colors'
         >
-          Regístrate 
+          Regístrate
         </Link>
 
         <Link
           to='olvide-password'
           className='block text-center my-5 text-slate-600 uppercase text-sm hover:text-slate-800 transition-colors'
         >
-          Recuperar clave 
+          Recuperar clave
         </Link>
       </nav>
+
+      <p className='text-center text-indigo-700'>Para probar la plataforma puedes usar las siguientes credenciales</p>
+      <div className='flex gap-2 justify-between text-gray-700'>
+        <p className='font-bold'>Correo: <span className='font-normal'>alix@alix.com</span></p>
+        <p className='font-bold'>Contraseña: <span className='font-normal'>joserangel</span></p>
+      </div>
     </>
   )
 }

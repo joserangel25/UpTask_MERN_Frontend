@@ -11,7 +11,7 @@ export default function ConfirmarCuenta() {
   useEffect(() => {
     const confirmarCuenta = async () => {
       try {
-        const url = `${import.meta.env.VITE_BACKEND_URL}/usuarios/confirmar/${id}`
+        const url = `${import.meta.env.VITE_BACKEND_URL}/api/usuarios/confirmar/${id}`
         const { data } = await axios(url)
         setAlerta({msg: data.msg})
         setCuentaConfirmada(true)
